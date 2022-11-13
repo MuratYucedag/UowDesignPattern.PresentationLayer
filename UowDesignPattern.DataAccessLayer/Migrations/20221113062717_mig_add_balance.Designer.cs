@@ -2,36 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UowDesignPattern.DataAccessLayer.Concrete;
 
 namespace UowDesignPattern.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20221113062717_mig_add_balance")]
+    partial class mig_add_balance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("SponsorTeam", b =>
-                {
-                    b.Property<int>("SponsorsSponsorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeamsTeamID")
-                        .HasColumnType("int");
-
-                    b.HasKey("SponsorsSponsorID", "TeamsTeamID");
-
-                    b.HasIndex("TeamsTeamID");
-
-                    b.ToTable("SponsorTeam");
-                });
 
             modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.BankAccountDetail", b =>
                 {
@@ -71,51 +58,6 @@ namespace UowDesignPattern.DataAccessLayer.Migrations
                     b.HasKey("CustomerID");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Sponsor", b =>
-                {
-                    b.Property<int>("SponsorID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("SponsorName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SponsorID");
-
-                    b.ToTable("Sponsors");
-                });
-
-            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Team", b =>
-                {
-                    b.Property<int>("TeamID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("TeamName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TeamID");
-
-                    b.ToTable("Teams");
-                });
-
-            modelBuilder.Entity("SponsorTeam", b =>
-                {
-                    b.HasOne("UowDesignPattern.EntityLayer.Concrete.Sponsor", null)
-                        .WithMany()
-                        .HasForeignKey("SponsorsSponsorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UowDesignPattern.EntityLayer.Concrete.Team", null)
-                        .WithMany()
-                        .HasForeignKey("TeamsTeamID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.BankAccountDetail", b =>

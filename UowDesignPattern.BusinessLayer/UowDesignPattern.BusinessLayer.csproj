@@ -17,4 +17,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UowDesignPattern.DataAccessLayer\UowDesignPattern.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\UowDesignPattern.EntityLayer\UowDesignPattern.EntityLayer.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,8 +9,8 @@ using UowDesignPattern.DataAccessLayer.Concrete;
 namespace UowDesignPattern.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221110182810_create_migration")]
-    partial class create_migration
+    [Migration("20221113062219_mig_create_first")]
+    partial class mig_create_first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,24 +20,20 @@ namespace UowDesignPattern.DataAccessLayer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Balance", b =>
+            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.BankAccountDetail", b =>
                 {
-                    b.Property<int>("BalanceID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("BankAccountDetailID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalBalance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BalanceID");
+                    b.Property<string>("LocationName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CustomerID");
+                    b.HasKey("BankAccountDetailID");
 
-                    b.ToTable("Balances");
+                    b.ToTable("BankAccountDetails");
                 });
 
             modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Customer", b =>
@@ -61,11 +57,11 @@ namespace UowDesignPattern.DataAccessLayer.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Balance", b =>
+            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.BankAccountDetail", b =>
                 {
                     b.HasOne("UowDesignPattern.EntityLayer.Concrete.Customer", "Customer")
-                        .WithMany("Balances")
-                        .HasForeignKey("CustomerID")
+                        .WithOne("BankAccountDetail")
+                        .HasForeignKey("UowDesignPattern.EntityLayer.Concrete.BankAccountDetail", "BankAccountDetailID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -74,7 +70,7 @@ namespace UowDesignPattern.DataAccessLayer.Migrations
 
             modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Customer", b =>
                 {
-                    b.Navigation("Balances");
+                    b.Navigation("BankAccountDetail");
                 });
 #pragma warning restore 612, 618
         }

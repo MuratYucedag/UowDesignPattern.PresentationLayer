@@ -12,6 +12,8 @@ namespace UowDesignPattern.EntityLayer.Concrete
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        public List<Balance> Balances { get; set; }
+        public decimal Balance { get; set; }
+        public BankAccountDetail BankAccountDetail { get; set; }
+
     }
 }

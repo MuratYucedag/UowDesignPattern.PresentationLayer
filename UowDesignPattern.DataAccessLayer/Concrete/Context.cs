@@ -16,6 +16,8 @@ namespace UowDesignPattern.DataAccessLayer.Concrete
         }
 
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Balance> Balances { get; set; }
+        public DbSet<BankAccountDetail> BankAccountDetails { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Sponsor> Sponsors { get; set; }
     }
 }

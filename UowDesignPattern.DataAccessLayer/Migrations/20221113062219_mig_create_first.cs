@@ -2,7 +2,7 @@
 
 namespace UowDesignPattern.DataAccessLayer.Migrations
 {
-    public partial class create_migration : Migration
+    public partial class mig_create_first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,35 +22,29 @@ namespace UowDesignPattern.DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Balances",
+                name: "BankAccountDetails",
                 columns: table => new
                 {
-                    BalanceID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TotalBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: false)
+                    BankAccountDetailID = table.Column<int>(type: "int", nullable: false),
+                    LocationName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Balances", x => x.BalanceID);
+                    table.PrimaryKey("PK_BankAccountDetails", x => x.BankAccountDetailID);
                     table.ForeignKey(
-                        name: "FK_Balances_Customers_CustomerID",
-                        column: x => x.CustomerID,
+                        name: "FK_BankAccountDetails_Customers_BankAccountDetailID",
+                        column: x => x.BankAccountDetailID,
                         principalTable: "Customers",
                         principalColumn: "CustomerID",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Balances_CustomerID",
-                table: "Balances",
-                column: "CustomerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Balances");
+                name: "BankAccountDetails");
 
             migrationBuilder.DropTable(
                 name: "Customers");

@@ -1,0 +1,19 @@
+﻿@model ProcessViewModel
+@{
+    ViewData["Title"] = "SendMoney";
+}
+
+<h1>Para Transfer Ekranı</h1>
+
+<form method="post">
+    <label>Para Gönderen ID</label>
+    <input type="text" asp-for="SenderID" class="form-control" />
+    <br />
+    <label>Para Alan ID</label>
+    <input type="text" asp-for="ReceiverID" class="form-control" />
+    <br />
+    <label>Miktar</label>
+    <input type="text" asp-for="Amount" class="form-control" />
+    <br />
+    <button class="btn btn-warning">Gönder Gelsin</button>
+</form>

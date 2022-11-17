@@ -10,7 +10,7 @@ namespace UowDesignPattern.BusinessLayer.Abstract
     {
         void TInsert(T t);
         void TDelete(T t);
-        void TUpdate(T t);
+        void TUpdate(List<T> t);
         List<T> TGetList();
         T TGetByID(int id);
     }

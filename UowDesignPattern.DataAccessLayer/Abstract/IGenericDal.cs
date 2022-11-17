@@ -10,7 +10,7 @@ namespace UowDesignPattern.DataAccessLayer.Abstract
     {
         void Insert(T t);
         void Delete(T t);
-        void Update(T t);
+        void Update(List<T> t);
         List<T> GetList();
         T GetByID(int id);          
     }

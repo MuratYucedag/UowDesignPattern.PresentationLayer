@@ -9,6 +9,7 @@ namespace UowDesignPattern.DataAccessLayer.UnitOfWork.Abstract
 {
     public interface IUowDal
     {
+        public ICustomerDal customerDal { get; set; }
         void Save();
     }
 }

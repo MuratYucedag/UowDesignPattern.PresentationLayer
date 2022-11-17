@@ -42,7 +42,13 @@ namespace UowDesignPattern.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-        public void TUpdate(Customer t)
+        public void TMultipleUpdateByCustomer(List<Customer> p)
+        {
+            _customerDal.MultipleUpdateByCustomer(p);
+            _uowDal.Save();
+        }
+
+        public void TUpdate(List<Customer> t)
         {
             _customerDal.Update(t);
             _uowDal.Save();

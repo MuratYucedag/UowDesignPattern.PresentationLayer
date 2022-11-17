@@ -40,7 +40,7 @@ namespace UowDesignPattern.PresentationLayer.Controllers
             p.SenderNewBalance = senderCurrentBalance - p.Amount;
             p.ReceiverNewBalance = receiverCurrentBalance + p.Amount;
 
-            // Customer t = new Customer();
+             Customer t = new Customer();
 
             var value1 = new Customer()
             {
@@ -54,7 +54,13 @@ namespace UowDesignPattern.PresentationLayer.Controllers
                 Balance = p.ReceiverNewBalance
             };
 
-          //  _customerService.TUpdate(t);
+            List<Customer> modifiedCustomers = new List<Customer>()
+            {
+                value1,
+                value2
+            };
+
+            _customerService.TUpdate(modifiedCustomers);
 
             return View();
         }

@@ -9,5 +9,6 @@ namespace UowDesignPattern.DataAccessLayer.Abstract
 {
     public interface ICustomerDal : IGenericDal<Customer>
     {
+        public void MultipleUpdateByCustomer(List<Customer> p);
     }
 }

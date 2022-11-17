@@ -36,9 +36,9 @@ namespace UowDesignPattern.DataAccessLayer.Repository
             _context.Add(t);
         }
 
-        public void Update(T t)
+        public void Update(List<T> t)
         {
-            _context.Update(t);
+            _context.UpdateRange(t);
         }
     }
 }

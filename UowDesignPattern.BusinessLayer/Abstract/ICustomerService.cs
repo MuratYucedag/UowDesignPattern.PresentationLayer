@@ -9,5 +9,6 @@ namespace UowDesignPattern.BusinessLayer.Abstract
 {
     public interface ICustomerService : IGenericService<Customer>
     {
+        public void TMultipleUpdateByCustomer(List<Customer> p);
     }
 }

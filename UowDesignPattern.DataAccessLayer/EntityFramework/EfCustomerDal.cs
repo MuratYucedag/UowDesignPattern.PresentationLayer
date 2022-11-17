@@ -14,6 +14,17 @@ namespace UowDesignPattern.DataAccessLayer.EntityFramework
     {
         public EfCustomerDal(Context context) : base(context)
         {
+
+        }
+
+        public void MultipleUpdateByCustomer(List<Customer> p)
+        {
+
+            using (var context = new Context())
+            {
+                //var durum1 = context.Entry(p).State;
+                context.UpdateRange(p);
+            }
         }
     }
 }
